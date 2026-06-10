@@ -1,0 +1,37 @@
+# 了了 · Git忽略规则
+
+# 运行时数据 (每次重启可重建)
+data/matrix_store.json
+data/audit_report.json
+data/component_index.*
+data/genome_core.json
+data/hypothesis_pool.json
+data/gene_pool.json
+data/niannian_eta.json
+data/pattern_memory.json
+data/__pycache__/
+
+# 数据库
+data/liaoliao.db
+
+# LLM密钥 (不含入仓库)
+.env.llm
+
+# Python缓存
+__pycache__/
+*.pyc
+
+# 临时文件
+*.log
+*.tmp
+/tmp/
+
+# 第三方
+node_modules/
+package-lock.json
+
+# 模拟数据
+data/fiscal_sim/
+data/sci_method/
+data/data_gate/
+data/dashboards/
