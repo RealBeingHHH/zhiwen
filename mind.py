@@ -74,7 +74,9 @@ class LLMBackend:
                 "standard": os.environ.get("LLM_MODEL_STANDARD"),
                 "deep": os.environ.get("LLM_MODEL_DEEP"),
             }
-            self._model = tier_models.get(tier) or os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
+            self._model = tier_models.get(tier) or os.environ.get("OPENAI_MODEL", "")
+            if not self._model:
+                self._model = None  # 用户未配置模型
 
     def generate(self, messages: list) -> Optional[str]:
         """生成回复。返回 None 表示回退到规则。"""

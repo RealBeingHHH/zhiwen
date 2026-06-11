@@ -93,7 +93,10 @@ ETA_GAZE_WEIGHTS = {
 
 LLM_MAX_TOKENS_DEFAULT = int(os.environ.get("LLM_MAX_TOKENS", "300"))
 LLM_CHUNK_SIZE = int(os.environ.get("LLM_CHUNK_SIZE", "1200"))
-LLM_PRICING = {"input": 0.27, "output": 1.10}  # USD/1M tokens
+LLM_PRICING = {  # 默认 DeepSeek 定价，可在 .env 中覆盖
+    "input": float(os.environ.get("LLM_PRICE_INPUT", "0.27")),
+    "output": float(os.environ.get("LLM_PRICE_OUTPUT", "1.10")),
+}  # USD/1M tokens
 LLM_EFFECTIVE_WINDOW = int(os.environ.get("LLM_WINDOW", "8000"))
 
 # ════════════════════════════════════════════════════════

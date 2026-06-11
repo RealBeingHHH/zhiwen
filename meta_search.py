@@ -25,8 +25,9 @@ TIMEOUT = 8
 def _llm_call(system: str, user: str, max_tokens: int = 500) -> Optional[str]:
     """调用 DeepSeek API。"""
     api_key = os.environ.get("OPENAI_API_KEY", "")
-    base_url = os.environ.get("OPENAI_BASE_URL", "https://api.deepseek.com/v1")
-    model = os.environ.get("OPENAI_MODEL", "deepseek-chat")
+    # 用户必须在 .env 中配置。参见 .env.example 了解支持的供应商。
+    base_url = os.environ.get("OPENAI_BASE_URL", "")
+    model = os.environ.get("OPENAI_MODEL", "")
 
     env_file = os.path.join(os.path.dirname(__file__), ".env.llm")
     if (not api_key or len(api_key) < 20) and os.path.exists(env_file):

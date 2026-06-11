@@ -12,12 +12,54 @@
 curl -fsSL https://raw.githubusercontent.com/RealBeingHHH/zhiwen/master/setup.sh | bash
 ```
 
-或者手动：
+安装完成后，**必须配置 API Key**（见下方）。
+
+---
+
+## 配置 API · Configure Your LLM
+
+知纹需要 LLM API 来工作。支持**任何 OpenAI 兼容的 API**。
+
+**步骤：**
 
 ```bash
-git clone https://github.com/RealBeingHHH/zhiwen.git && cd zhiwen
-pip install -r requirements.txt
-echo '{"OPENAI_API_KEY":"sk-your-key"}' > .env.llm
+# 1. 复制配置模板
+cp .env.example .env
+
+# 2. 编辑 .env，选择供应商并填入你的 Key
+nano .env  # 或用任何编辑器
+```
+
+### 支持的供应商 · Supported Providers
+
+| 供应商 | Base URL | 获取 Key |
+|--------|----------|---------|
+| **DeepSeek**（国内首选） | `https://api.deepseek.com/v1` | [platform.deepseek.com](https://platform.deepseek.com) |
+| **OpenAI** | `https://api.openai.com/v1` | [platform.openai.com](https://platform.openai.com) |
+| **通义千问**（阿里云） | `https://dashscope.aliyuncs.com/compatible-mode/v1` | [dashscope.console.aliyun.com](https://dashscope.console.aliyun.com) |
+| **Groq**（免费额度） | `https://api.groq.com/openai/v1` | [console.groq.com](https://console.groq.com) |
+| **Together AI** | `https://api.together.xyz/v1` | [api.together.xyz](https://api.together.xyz) |
+| **硅基流动**（国内中转） | `https://api.siliconflow.cn/v1` | [siliconflow.cn](https://siliconflow.cn) |
+| **本地 Ollama** | `http://localhost:11434/v1` | 无需 Key |
+| **本地 vLLM** | `http://localhost:8080/v1` | 无需 Key |
+
+### 配置示例
+
+```bash
+# DeepSeek 示例
+OPENAI_API_KEY=sk-your-deepseek-key
+OPENAI_BASE_URL=https://api.deepseek.com/v1
+OPENAI_MODEL=deepseek-chat
+
+# OpenAI 示例
+# OPENAI_API_KEY=sk-your-openai-key
+# OPENAI_BASE_URL=https://api.openai.com/v1
+# OPENAI_MODEL=gpt-4o
+```
+
+配置完成后启动：
+
+```bash
 python3 server.py --port 9200
 ```
 
